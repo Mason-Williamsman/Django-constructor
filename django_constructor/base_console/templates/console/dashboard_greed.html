@@ -1,0 +1,149 @@
+{% load static %}
+{% load common_filters %}
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard-greed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/console/css/styles-theme.css" type="text/css" />
+    <link rel="stylesheet" href="{% static 'console/css/styles-theme' %}" type="text/css" />
+    <link rel="stylesheet" href="../../static/console/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="{% static 'console/css/styles.css' %}" type="text/css" />
+    <link rel="stylesheet" href="" type="text/css" />
+    <!-- <link rel="stylesheet" href="../../static/console/css/scchema-light.css"> -->
+</head>
+
+<body>
+    <div class="main-container">
+
+ <!-- HEADER -->
+ <header class="block">
+    <ul class="header-menu horizontal-list">
+        <li>
+            <a class="header-menu-tab" href="{% url 'base_console:create_project' %}"><span class="icon fontawesome-plus scnd-font-color" alt="Create project"></span></a>
+        </li>
+    </ul>
+    <div class="profile-menu">
+        <p>Theme</p>
+
+        <label class="switch">
+            <input type="checkbox">
+            <span id="switch" class="slider round" onclick="toggleTheme()"></span>
+        </label>
+    
+        <!-- <p>Me <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p> -->
+        <div class="">
+            
+        </div>
+    </div>
+</header>
+
+<!-- LEFT-CONTAINER -->
+<div class="left-container container">
+
+
+
+    {% if latest_project_list %}
+        {% for project in latest_project_list  %}
+        <div>
+        <ul>
+         <h2>{{ project.project_name|upper|human_readable_title }}</h2>
+         <li> <a href="{{ project.project_public_url }}:{{ project.project_port }}">{{ project.project_public_url }}:{{ project.project_port }}</a> </li>
+ 
+            {% for application in latest_application_list %}
+                {% if  project.id == application.project.id  %}
+                <ul>
+ 
+                 <li><small>{{ application.application_name|human_readable_title }}</small></li>
+                </ul>
+    <!--        application.application_name-->
+     
+                {% endif %}
+         {% endfor %}
+            <li>  <small> ID: {{ project.id }} created: {{ project.pub_date }}</small> </li>
+        </ul>  
+        </div>
+ {% endfor %}
+ {% else %}
+     <p>No polls are available.</p>
+ {% endif %}
+
+
+    {% if latest_project_list %}
+    {% for project in latest_project_list  %}
+    <div class="wcategory block clear"> <!-- CONTAINER -->
+        <h2 class="titular">
+            <span class="icon entypo-folder"></span>
+            <i class="fa-solid fa-folders"></i>
+            <strong>{{ project.project_name|upper|human_readable_title }}</strong>
+          </h2>
+      <div class="current-day">
+          <a href="#">
+          <p class="current-day-date"><a href="{{ project.project_public_url }}:{{ project.project_port }}">{{ project.project_public_url }}:{{ project.project_port }}</a> </p>
+          <!-- <a class="media-btn play" href="#23"><span class="fontawesome-play scnd-font-color"></span></a> -->
+          </a>
+      </div>
+
+
+      {% for application in latest_application_list %}
+      {% if  project.id == application.project.id  %}
+      <ul class="next-days">
+          <li>
+              <a href="#43">
+                  <p class="next-days-date">
+                      <span class="day">{{ application.application_name|human_readable_title }}</span> 
+                      <span class="scnd-font-color">ID:23</span>
+                      <i class="fa fa-check-circle" aria-hidden="true"></i>
+                  </p>
+                  <p class="next-days-temperature">
+                    T
+                    M 
+                    W 
+                    C
+                  </p>
+              </a>
+          </li>
+      </ul>
+      {% endif %}
+      {% endfor %}
+
+      <div class="tweet">
+        <p>We are in the process of pushing out all of the new CC apps! 
+            <a class="tweet-link" href="#19">#github</a>
+        </p>
+        <p><a class="scnd-font-color" href="#20">6 hours ago</a></p>
+      </div>
+
+      <div class="media-control-bar">
+        <p class="time-passed">ID: {{ project.id }} <span class="time-duration scnd-font-color">| Created at: {{ project.pub_date }}</span></p>
+      </div>
+    </div> <!-- END CONTAINER -->
+    {% endfor %}
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+    
+</div>
+
+<!-- MIDDLE-CONTAINER -->
+<div class="middle-container container">
+    
+
+<!-- end middle-container -->    
+</div>  
+
+<!-- RIGHT-CONTAINER -->
+<div class="right-container container">
+    
+</div> <!-- end right-container -->
+
+</div><!-- end main-container -->
+
+
+<script src='../../static/console/js/set_theme.js'></script>
+</body>
+
+</html>
