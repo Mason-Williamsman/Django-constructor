@@ -1,0 +1,197 @@
+{% load static %}
+{% load common_filters %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Bootstrap Masonry Grid Template</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="{% static 'console/style.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!--
+As mentioned in the official Bootstrap 3 documentation (http://getbootstrap.com/components/#thumbnails): You can either do it like in this pen, or see more options at:
+
+https://masonry.desandro.com/
+https://isotope.metafizzy.co/
+http://salvattore.com/
+-->
+
+<div class="container">
+<div class="row masonry-grid">
+
+    <button class="btn btn-outline-info"   href="http://django-constructor.com:8006/console/create_project/"  value="git_ext" name="Next" >Create</button>
+
+<br>
+<a href="{% url 'base_console:create_project' %}">create project</a>
+<br>
+<br><br><br>
+
+<div class="col-md-6 col-lg-4 masonry-column">
+
+{% if latest_project_list %}
+   {% for project in latest_project_list  %}<div>
+<ul>
+        <h2>{{ project.project_name|upper|human_readable_title }}</h2>
+        <li> <a href="#">{{ project.project_public_url }}:{{ project.project_port }}</a> </li>
+
+        {% for application in latest_application_list %}
+            {% if  project.id == application.project.id  %}
+<ul>
+
+<li><small>{{ application.application_name|human_readable_title }}</small></li>
+</ul>
+<!--        application.application_name-->
+
+{% endif %}
+
+        {% endfor %}
+  <li>  <small> ID: {{ project.id }} created: {{ project.pub_date }}</small> </li>
+</ul>  </div>
+{% endfor %}
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+   </div>
+
+
+ <div class="col-md-6 col-lg-4 masonry-column">
+
+{% if latest_project_list %}
+   {% for project in latest_project_list_sep2  %}<div>
+<ul>
+        <h2>{{ project.project_name|upper|human_readable_title }}</h2>
+        <li> <a href="#">{{ project.project_public_url }}:{{ project.project_port }}</a> </li>
+
+        {% for application in latest_application_list %}
+            {% if  project.id == application.project.id  %}
+<ul>
+
+<li><small>{{ application.application_name|human_readable_title }}</small></li>
+</ul>
+<!--        application.application_name-->
+
+{% endif %}
+
+        {% endfor %}
+  <li><b>Date created: </b> <small>{{ project.pub_date }}</small> </li>
+</ul>  </div>
+{% endfor %}
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+   </div>
+ <div class="col-md-6 col-lg-4 masonry-column">
+
+{% if latest_project_list %}
+   {% for project in latest_project_list_sep3  %}<div>
+<ul>
+        <h2>{{ project.project_name|upper|human_readable_title }}</h2>
+        <li> <a href="#">{{ project.project_public_url }}:{{ project.project_port }}</a> </li>
+
+        {% for application in latest_application_list %}
+            {% if  project.id == application.project.id  %}
+<ul>
+
+<li><small>{{ application.application_name|human_readable_title }}</small></li>
+</ul>
+<!--        application.application_name-->
+
+{% endif %}
+
+        {% endfor %}
+  <li><b>Date created: </b> <small>{{ project.pub_date }}</small> </li>
+</ul>  </div>
+{% endfor %}
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+   </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {% comment "Optional note" %}
+
+    `{% include 'reusable.hmtl' with var_a='abc' var_b=123 %}`
+
+
+    {% for application in latest_application_list %}
+
+        <li>{{ application.application_name }} {{ application.project }} {{ application.project.id }}</li>
+---
+        {% for project in application.project_set.all %}
+            {{ project }} {{ project.id }} {{ project.project_name }} {{ application.project }}
+            <li>{{ application.application_name }} {{ application.project }} {{ application.project.id }}</li>
+<!--        application.application_name-->
+<li>aan {{ application.application_name }} ap {{ application.project }} api {{ application.project.id }}</li>
+<li><small>---------> {{ project }} {{ project.project_name }} {{ project.id }}  {{ application.project }}</small></li>
+ {% for application in application1.project.id %}{% endfor %}
+
+application in latest_application_list
+
+project.latest_application_list_set
+latest_application_list.project_set
+latest_application_list.project
+latest_application_list_set.project
+latest_application_list_set.project.id
+latest_application_list.project.id
+latest_application_list|project
+latest_application_list|in_project
+latest_application_list|in_project:project
+latest_application_list|in_project:project.id
+latest_application_list|in_project.id:application.project.id
+latest_application_list.project|project:project
+project.latest_application_list|project:project
+
+{ query latest_application_list application.project.id=project.id as the_application %}
+{ query latest_application_list project=project as the_application %}
+        {% for application in the_application %}
+
+{% for application in latest_application_list|slice:":10" %}
+{{ project.project_name.0 }} # iterator
+
+<li><small>       --------->{{ project.project_name }} <b>{{ project.id }} </b> {{ application.project }} {{ application.project.id }}</small></li>
+<li><small>       ---------> {{ application.application_name }} {{ application.project }} {{ application.project.id }} __</small></li>
+<!--        application.application_name-->
+
+        {% endfor %}
+    {% endfor %}
+{% endcomment %}
+
+
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+</body>
+</html>

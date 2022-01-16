@@ -1,0 +1,41 @@
+<h1>Projects</h1>
+{% if latest_project_list %}
+    <ul>
+    {% for project in latest_project_list %}
+        <li><b>Project name: </b> <a href="#">{{ project.project_name }}</a> </li>
+        <li><b>Path to project SRC: </b> <small>{{ project.project_path }}</small> </li>
+        <li><b>Date created </b> <a href="#">{{ project.pub_date }}</a> </li>
+<!--url 'console:create_project'-->
+        <!--        rl 'console:project' project.id-->
+
+        <br>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+url 'create_project'
+<button class="btn btn-outline-info"   href="http://django-constructor.com:8006/console/create_project/"  value="git_ext" name="Next" >Create</button>
+
+<br>
+<a href="{% url 'base_console:create_project' %}">create project</a>
+<br>
+
+------------
+{% if latest_project_list2 %}
+    {% for applications in latest_project_list2 %}
+        <li><b> Application: </b> <a href = "#" > {{ application_name.application_name }} </a> </li>
+        <br>
+    {% endfor %}
+{% endif %}
+
+{% if latest_project_list %}
+    {% for applications in latest_project_list %}
+        <li><b> Application: </b> <a href = "#" > {{ application_name.application_name }} </a> </li>
+        <br>
+    {% endfor %}
+{% endif %}
+
+{% for application in applications %}
+    {{ application.application_name }}
+{% endfor %}

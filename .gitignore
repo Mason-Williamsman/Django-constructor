@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Migrations steps
+django_constructor/base_console/migrations/*
